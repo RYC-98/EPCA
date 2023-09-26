@@ -69,108 +69,18 @@ def gt_1dim_line(args, x_o2x_adv: torch.Tensor, n, ratio_size_mask=0.3, if_left=
 
     return direction / torch.norm(direction, p=2) * torch.norm(x_o2x_adv, p=2), mask 
 
-    
+
+
+
 def get_x_hat_in_2d(args, x_o: torch.Tensor, x_adv: torch.Tensor, axis_unit1: torch.Tensor, axis_unit2: torch.Tensor,
-                    net: torch.nn.Module, queries, original_label, max_iter=2, init_alpha = np.pi/2):
-
-    if not hasattr(get_x_hat_in_2d, 'alpha'):  
-        get_x_hat_in_2d.alpha = init_alpha     
-
-    if not hasattr(get_x_hat_in_2d, 'theta'):  
-        get_x_hat_in_2d.theta = args.init_beta
-
-    if not hasattr(get_x_hat_in_2d, 'v'): 
-        get_x_hat_in_2d.v = 0.0
-
-    d = torch.norm(x_adv - x_o, p=2)           
-
-    theta = get_x_hat_in_2d.theta
-
-    x_hat = torch_dct.idct_2d(x_adv)               
-    
-    right_theta = np.pi - get_x_hat_in_2d.alpha    
-    x = x_o + (axis_unit1 * np.cos(theta) + axis_unit2 * np.sin(theta)) * d / np.sin(get_x_hat_in_2d.alpha) * np.sin(
-        get_x_hat_in_2d.alpha + theta)             
-                                                       
-    x = torch_dct.idct_2d(x)                       
-    
-    get_x_hat_in_2d.total += 1                                   
-    get_x_hat_in_2d.clamp += torch.sum(x > 1) + torch.sum(x < 0) 
-    x = torch.clamp(x, 0, 1)
-    label = get_label(net(x))
-    queries += 1
-    if label != original_label:       
-        x_hat = x                     
-        left_theta = theta           
-        flag = 1                      
-        
-    else:                       
-    
-        x = x_o + d * (axis_unit1 * np.cos(theta) - axis_unit2 * np.sin(theta)) / np.sin(
-            get_x_hat_in_2d.alpha) * np.sin(
-            get_x_hat_in_2d.alpha + theta) 
-        x = torch_dct.idct_2d(x)
-        get_x_hat_in_2d.total += 1
-        get_x_hat_in_2d.clamp += torch.sum(x > 1) + torch.sum(x < 0)
-        x = torch.clamp(x, 0, 1)
-        label = get_label(net(x))
-        queries += 1
-        if label != original_label:  
-            x_hat = x
-            left_theta = theta
-            flag = -1
-            
-            
-        else:                    
-
-            get_x_hat_in_2d.v = args.u * get_x_hat_in_2d.v - 1.0
-            get_x_hat_in_2d.theta = get_x_hat_in_2d.theta + args.step * np.sign(get_x_hat_in_2d.v) # sign
-            get_x_hat_in_2d.theta = max(args.init_beta, get_x_hat_in_2d.theta)
-            get_x_hat_in_2d.theta = min(np.pi - args.init_alpha, get_x_hat_in_2d.theta)
-
-
-            return x_hat, queries, False   
+## details will be compensated later ##
 
 
 
-    #### binary search for beta ####
-    theta = (left_theta + right_theta) / 2
-    for i in range(max_iter):            
-        x = x_o + d * (axis_unit1 * np.cos(theta) + flag * axis_unit2 * np.sin(theta)) / np.sin(
-            get_x_hat_in_2d.alpha) * np.sin(
-            get_x_hat_in_2d.alpha + theta)
-        x = torch_dct.idct_2d(x)     
-        get_x_hat_in_2d.total += 1
-        get_x_hat_in_2d.clamp += torch.sum(x > 1) + torch.sum(x < 0)
-        x = torch.clamp(x, 0, 1)
-        label = get_label(net(x))
-        queries += 1
-        if label != original_label:  
-            left_theta = theta       
-            x_hat = x
-                      
-            
-            get_x_hat_in_2d.v = args.u * get_x_hat_in_2d.v + 1.0
-            get_x_hat_in_2d.theta = get_x_hat_in_2d.theta + args.step * np.sign(get_x_hat_in_2d.v)
-            get_x_hat_in_2d.theta = max(args.init_beta, get_x_hat_in_2d.theta)
-            get_x_hat_in_2d.theta = min(np.pi - args.init_alpha, get_x_hat_in_2d.theta)
-            
-                        
-            return x_hat, queries, True                 
-
-        else:        
-
-            right_theta = theta                     
-        theta = (left_theta + right_theta) / 2        
-    
-    
-    get_x_hat_in_2d.v = args.u * get_x_hat_in_2d.v + 1.0
-    get_x_hat_in_2d.theta = get_x_hat_in_2d.theta + args.step * np.sign(get_x_hat_in_2d.v)
-    get_x_hat_in_2d.theta = max(args.init_beta, get_x_hat_in_2d.theta)
-    get_x_hat_in_2d.theta = min(np.pi - args.init_alpha, get_x_hat_in_2d.theta)
-    return x_hat, queries, True
 
 
+
+                    
 def get_x_hat_arbitary(args,x_o: torch.Tensor, net: torch.nn.Module, original_label, init_x=None,dim_num=5):
 
     
