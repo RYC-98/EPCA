@@ -20,3 +20,5 @@ The generated adversarial examples would be stored in directory `./adv`.
 
 ## Codes reference
 Thanks to the selfless contributions of previous researcher, our codes refer to [TA](https://github.com/xiaosen-wang/TA)
+
+![Result](https://github.com/RYC-98/EPCA/blob/main/table2.png)
