@@ -19,4 +19,4 @@ python EPCA.py
 The generated adversarial examples would be stored in directory `./adv`. 
 
 ## Codes reference
-[TA](https://github.com/xiaosen-wang/TA)
+Thanks to the selfless contributions of previous researcher, our codes refer to [TA](https://github.com/xiaosen-wang/TA)
