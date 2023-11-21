@@ -10,6 +10,7 @@ import torchvision.models as models
 from datetime import datetime
 import pandas as pd
 
+
 def get_model(args,device):
     model_name = args.model_name
     if model_name == 'resnet-18':
