@@ -126,7 +126,7 @@ def get_x_hat_in_2d(args, x_o: torch.Tensor, x_adv: torch.Tensor, axis_unit1: to
             get_x_hat_in_2d.v = args.u * get_x_hat_in_2d.v - 1.0
             get_x_hat_in_2d.theta = get_x_hat_in_2d.theta + args.step * np.sign(get_x_hat_in_2d.v) # sign
             get_x_hat_in_2d.theta = max(args.init_beta, get_x_hat_in_2d.theta)
-            get_x_hat_in_2d.theta = min(np.pi - args.init_alpha, get_x_hat_in_2d.theta)
+            get_x_hat_in_2d.theta = min(np.pi - args.init_alpha - 0.0001, get_x_hat_in_2d.theta)
 
 
             return x_hat, queries, False   
@@ -153,7 +153,7 @@ def get_x_hat_in_2d(args, x_o: torch.Tensor, x_adv: torch.Tensor, axis_unit1: to
             get_x_hat_in_2d.v = args.u * get_x_hat_in_2d.v + 1.0
             get_x_hat_in_2d.theta = get_x_hat_in_2d.theta + args.step * np.sign(get_x_hat_in_2d.v)
             get_x_hat_in_2d.theta = max(args.init_beta, get_x_hat_in_2d.theta)
-            get_x_hat_in_2d.theta = min(np.pi - args.init_alpha, get_x_hat_in_2d.theta)
+            get_x_hat_in_2d.theta = min(np.pi - args.init_alpha - 0.0001, get_x_hat_in_2d.theta)
             
                         
             return x_hat, queries, True                 
@@ -167,7 +167,7 @@ def get_x_hat_in_2d(args, x_o: torch.Tensor, x_adv: torch.Tensor, axis_unit1: to
     get_x_hat_in_2d.v = args.u * get_x_hat_in_2d.v + 1.0
     get_x_hat_in_2d.theta = get_x_hat_in_2d.theta + args.step * np.sign(get_x_hat_in_2d.v)
     get_x_hat_in_2d.theta = max(args.init_beta, get_x_hat_in_2d.theta)
-    get_x_hat_in_2d.theta = min(np.pi - args.init_alpha, get_x_hat_in_2d.theta)
+    get_x_hat_in_2d.theta = min(np.pi - args.init_alpha - 0.0001, get_x_hat_in_2d.theta)
     return x_hat, queries, True
 
 
