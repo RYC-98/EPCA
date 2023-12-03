@@ -1,4 +1,4 @@
-# Efficient polar coordinates attack with adaptive activation strategy
+# Efficient polar coordinates attack with adaptive activation strategy (details will be completed as soon as acception)
 
 ## Requirements
 
