@@ -7,7 +7,7 @@
 + numpy == 1.24.3
 + imageio == 2.6.1
 + torch_dct == 0.1.5
-+ timm = 0.9.12 (Optional for transformer-based models)
++ timm == 0.9.12 (Optional for transformer-based models)
 
 ### Runing attack
 
