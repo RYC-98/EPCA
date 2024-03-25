@@ -1,4 +1,4 @@
-# Efficient polar coordinates attack with adaptive activation strategy (details will be completed as soon as acception)
+# Efficient polar coordinates attack with adaptive activation strategy 
 
 ## Requirements
 
@@ -22,4 +22,5 @@ The generated adversarial examples would be stored in directory `./adv`.
 ## Codes reference
 Thanks to the selfless contributions of the previous researcher, our codes refer to [TA](https://github.com/xiaosen-wang/TA)
 
+## Partial result
 ![Result](https://github.com/RYC-98/EPCA/blob/main/table2.png)
