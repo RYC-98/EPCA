@@ -19,8 +19,10 @@ python EPCA.py
 
 The generated adversarial examples would be stored in directory `./adv`. 
 
+Note that if you want to attack transformer-based vision models, further adjustment should be made in attack_utils.py.
+
+### Partial result
+![Result](https://github.com/RYC-98/EPCA/blob/main/table2.png)
+
 ## Codes reference
 Thanks to the selfless contributions of the previous researcher, our codes refer to [TA](https://github.com/xiaosen-wang/TA)
-
-## Partial result
-![Result](https://github.com/RYC-98/EPCA/blob/main/table2.png)
