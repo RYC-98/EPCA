@@ -8,7 +8,7 @@
 + imageio == 2.6.1
 + torch_dct == 0.1.5
 + timm == 0.9.12 (Optional for transformer-based models)
-If you want to attack transformer-based vision models, some adjustment should be made in attack_utils.py
++ Note that if you want to attack transformer-based vision models, some adjustment should be made in attack_utils.py
 
 ### Runing attack
 
