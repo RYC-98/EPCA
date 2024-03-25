@@ -17,9 +17,9 @@ You could run plain EPCA as follows:
 python EPCA.py 
 ```
 
-The generated adversarial examples would be stored in directory `./adv`. 
+The generated adversarial examples would be stored in directory `./adv`
 
-Note that if you want to attack transformer-based vision models, further adjustment should be made in attack_utils.py.
+Note that if you want to attack transformer-based vision models, some adjustment should be made in attack_utils.py
 
 ### Partial result
 ![Result](https://github.com/RYC-98/EPCA/blob/main/table2.png)
